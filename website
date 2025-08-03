@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dubon Crafts Inc. | Hardwood & Engineered Wood Flooring</title>
+  <!-- Vintage/Refined font pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Dubon Crafts Inc. — hardwood and engineered wood flooring installation, staining, sanding, and hand-scraped finishes that deliver antique-style cachet. 20+ years of experience. NWFA member. Serving Michigan." />
+
+  <!-- Open Graph for social shares -->
+  <meta property="og:title" content="Dubon Crafts Inc. | Hardwood & Engineered Wood Flooring" />
+  <meta property="og:description" content="Installation, staining, sanding, and hand-scraped finishes with antique-style cachet. 20+ years. NWFA member. Serving Michigan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{YOUR_SITE_URL}}" />
+  <meta property="og:image" content="{{ABSOLUTE_URL_TO_YOUR_HERO_IMAGE}}" />
+
+  <style>
+    :root{
+      --brand:#0d3a6d;      /* primary dark blue */
+      --brand-dark:#072851;  /* darker shade */
+      --ink:#1a1a1a;
+      --muted:#595959;
+      --bg:#ffffff;
+      --accent:#0f6;
+      --font-heading:'Cormorant Garamond', serif;  /* elegant, vintage feel */
+      --font-body:'Libre Franklin', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;  /* modern, legible body */
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--bg);font-size:17px;line-height:1.7;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}  
+    a{color:var(--brand);text-decoration:none;transition:color .15s ease} 
+    a:hover{text-decoration:underline;color:var(--brand-dark)} 
+    .wrap{max-width:1100px;margin:auto;padding:0 20px}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-heading);font-weight: 900;letter-spacing:0.5px;font-size:clamp(24px, 4vw, 36px);}    
+    .logo span{color:var(--brand)} 
+    .tel{display:inline-flex;align-items:center;gap:.6rem;background:var(--brand);color:#fff;padding:.7rem 1.1rem;border-radius:.7rem;font-weight:700;font-family:var(--font-heading);letter-spacing:.4px;text-transform:uppercase;box-shadow:0 6px 16px rgba(13,58,109,.15)}  
+    .tel:hover{background:var(--brand-dark);text-decoration:none}
+    .hero{position:relative;padding:56px 0 24px;background-image:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('/images/hero.jpg');background-size:cover;background-position:center;color:#fff}
+    .hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(32px,5vw,52px);margin:0 0 12px;letter-spacing:.4px}  
+    .hero p{max-width:780px;color:rgba(255,255,255,.9);margin:0 0 18px;font-size:18px} 
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .badge{border:1px solid #e5e5e5;border-radius:999px;padding:6px 12px;font-size:14px;background:#fff;font-family:var(--font-body)} 
+    .grid{display:grid;gap:24px}
+    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)} .grid-2{grid-template-columns:repeat(2,1fr)}}
+    section{padding:44px 0;border-top:1px solid #f2f2f2}
+    h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,3.2vw,34px);margin:0 0 12px;letter-spacing:.25px}  
+    .card{border:1px solid #eee;border-radius:14px;padding:18px;background:#fff;font-family:var(--font-body)} 
+    .card p{margin:0 0 8px}.list li{margin:4px 0} .list{margin:10px 0 0;padding-left:18px}
+    .cta{background:#f2f7ff;border:1px solid #cfe0ff;padding:24px;border-radius:14px} 
+    .footer{padding:30px 0;background:#111;color:#e9e9e9}
+    .footer a{color:#fff;font-family:var(--font-body)} 
+    .kicker{font-family:var(--font-body);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .kicker .sym{font-size:1.05em;margin-right:8px;vertical-align:-0.1em} 
+    .sticky-call{position:fixed;right:16px;bottom:16px;background:var(--brand);color:#fff;padding:1rem 1.2rem;border-radius:999px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;box-shadow:0 12px 28px rgba(13,58,109,.25)} 
+    .sticky-call:hover{background:var(--brand-dark);text-decoration:none}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px;border:1px solid #eee}
+    small.note{color:#6b6b6b}
+    /* Brand mark (image) */
+    .mark-img{width:40px;height:40px;display:block;object-fit:contain;border-radius:6px;filter:drop-shadow(0 2px 4px rgba(13,58,109,.15))} 
+
+        .logo-ph{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:2px dashed #cbd5e1;border-radius:8px;color:#94a3b8;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#f8fafc}
+/* Phone icon in CTA */
+    .phone-ic{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;opacity:.95}
+    .tel{gap:.5rem}
+    
+    /* Stronger h3 styling for modern-vintage balance */
+    h3{font-family:var(--font-heading);font-weight:700;letter-spacing:.2px;font-size:clamp(18px,2.2vw,22px)}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo" style="font-weight: 1000;"> <img class="mark-img" src="/images/logo.png" alt="Dubon Crafts emblem" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="logo-ph" aria-hidden="true" style="display:none">Logo</div> <span style="text-transform:uppercase; font-weight:1000;"><span style="color:var(--ink); font-weight:1000;">DUBON</span><span style="color:var(--brand); font-weight:1000;">CRAFTS</span> <span style="color:var(--ink); font-weight:1000;">INC.</span></span>
+    </div>
+    <a class="tel" href="tel:+19252435600">
+      <svg class="phone-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5c0 8 8 16 16 16l3-3-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5-3 3z"/></svg>
+      Call (925) 243-5600
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Hardwood & Engineered Wood Flooring—Installation Tailored for You!</h1>
+      <p>
+        With 20+ years in the trade and roots in San Francisco, <strong>Dubon Crafts Inc.</strong>
+        delivers exacting installation, custom staining &amp; sanding, and <strong>hand-scraped finishes</strong>
+        that impart an <em>antique-style cachet</em>—subtle texture that ages gracefully and hides wear.
+        Now serving homeowners and light-commercial clients across Michigan.
+      </p>
+      <div class="badges">
+        <span class="badge">NWFA Member</span>
+        <span class="badge">State-Licensed Contractor</span>
+        <span class="badge">Low-Odor Finishes</span>
+        <span class="badge">Clean Job Sites &amp; Written Estimates</span>
+      <span class="badge">VOC-Free</span>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Services</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3 style="font-family: var(--font-heading); font-weight:600; letter-spacing:.2px;">Installation</h3>
+          <p><strong>Flawless from prep to plank.</strong></p>
+          <ul class="list">
+            <li>Solid &amp; engineered wood installation</li>
+            <li>Layout planning (straight, diagonal, herringbone optional)</li>
+            <li>Acclimation &amp; moisture testing</li>
+            <li>Subfloor leveling &amp; prep</li>
+            <li>Nail, glue, or floating systems as appropriate</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Staining &amp; Sanding</h3>
+          <p><strong>Dust‑controlled, color‑true, durable.</strong></p>
+          <ul class="list">
+            <li>HEPA dust capture sanding</li>
+            <li>Custom color matching to samples</li>
+            <li>Water‑ or oil‑based systems (matte → gloss)</li>
+            <li>Low‑odor &amp; VOC‑free options</li>
+            <li>Protective multi‑coat finish</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Hand‑Scraped Finish</h3>
+          <p><strong>Authentic, time‑worn character—by hand.</strong></p>
+          <ul class="list">
+            <li>Subtle undulation with eased edges</li>
+            <li>Hand‑tooled texture that hides wear</li>
+            <li>Pairs well with white oak, red oak, and hickory</li>
+            <li>Optional wire‑brush or bevel accents</li>
+            <li>Sealed in your choice of sheen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Our Process</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="kicker">01 • <span class="sym" aria-hidden="true">🗨️</span> Consult</div>
+          In-home assessment, species &amp; sheen recommendations, written estimate.
+        </div>
+        <div class="card">
+          <div class="kicker">02 • <span class="sym" aria-hidden="true">🧰</span> Prep.</div>
+          Moisture checks, subfloor correction, layout &amp; expansion planning.
+        </div>
+        <div class="card">
+          <div class="kicker">03 • <span class="sym" aria-hidden="true">🔨</span> Install</div>
+          Professional fastening or adhesive systems appropriate to substrate and plank.
+        </div>
+        <div class="card">
+          <div class="kicker">04 • <span class="sym" aria-hidden="true">🖌️</span> Finish</div>
+          Stain selection, sanding sequence, protective coats; optional hand-scraping.
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Recent Work</h2>
+      <div class="gallery">
+        <img src="{{/images/project1.jpg}}" alt="Wide-plank engineered oak installation" />
+        <img src="{{/images/project2.jpg}}" alt="Hand-scraped oak with matte oil finish" />
+        <img src="{{/images/project3.jpg}}" alt="Dust-controlled sanding in progress" />
+        <img src="{{/images/project4.jpg}}" alt="Custom stain on solid white oak" />
+      </div>
+      <p><small class="note"></small></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Service Area</h2>
+      <p>We are a <strong>service-area contractor</strong>. Typical cities: {{Bloomfield Hills, Birmingham, Troy, Royal Oak, Rochester, West Bloomfield, Farmington Hills, Novi, Madison Heights}}. If you’re nearby, call to confirm scheduling.</p>
+      <div class="cta">
+        <strong>Ready for a clean, durable floor?</strong><br />
+        Call <a href="tel:+19252435600">(925) 243-5600</a> for a free, no-pressure in-home estimate. Prefer email?
+        <a href="mailto:{{estimates@duboncrafts.com}}">Duboncraftsinc@yahoo.com</a>.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-start; justify-content:space-between">
+      <div>
+        <strong>Dubon Crafts Inc.</strong><br />
+        Phone: <a href="tel:+19252435600">(925) 243-5600</a><br />
+        Email: <a href="mailto:{{estimates@duboncrafts.com}}">{{Duboncraftsinc@yahoo.com}}</a><br />
+        <small>Originally established in San Francisco, California. Now serving Michigan as a service-area contractor.</small>
+      </div>
+      <div>
+        <small>Hours: Mon–Fri 8:00–6:00, Sat by appointment</small><br />
+        <small>NWFA Member • Insured</small><br />
+        <small>&copy; <span id="y"></span> Dubon Crafts Inc.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="sticky-call" href="tel:+19252435600" aria-label="Call Dubon Crafts Inc.">Call (925) 243-5600</a>
+
+<script>
+  // Update year in footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<!-- Structured data for local SEO (edit placeholders) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Dubon Crafts Inc.",
+  "url": "{{YOUR_SITE_URL}}",
+  "image": "{{ABSOLUTE_URL_TO_YOUR_HERO_IMAGE}}",
+  "telephone": "+19252435600",
+  "email": "{{estimates@duboncrafts.com}}",
+  "areaServed": ["Bloomfield Hills MI","Birmingham MI","Troy MI","Royal Oak MI","Rochester MI","West Bloomfield MI","Novi MI"],
+  "memberOf": "National Wood Flooring Association",
+  "description": "Hardwood and engineered wood flooring installation, staining, sanding, and hand-scraped finishes with antique-style cachet. 20+ years of experience. NWFA member.",
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "priceRange": "$$",
+  "sameAs": ["{{https://www.facebook.com/yourpage}}","{{https://www.instagram.com/yourpage}}"]
+}
+</script>
+
+</body>
+</html>
