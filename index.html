@@ -70,7 +70,13 @@
     
     /* Stronger h3 styling for modern-vintage balance */
     h3{font-family:var(--font-heading);font-weight:700;letter-spacing:.2px;font-size:clamp(18px,2.2vw,22px)}
-  </style>
+    /* Lightbox */
+    .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
+    .lb-overlay.open{display:flex}
+    .lb-overlay img{max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .lb-close{position:absolute;top:14px;right:16px;cursor:pointer;font-size:28px;color:#fff;line-height:1}
+    .lb-overlay:focus{outline:2px solid #fff;outline-offset:4px}
+</style>
 </head>
 <body>
 
@@ -89,7 +95,7 @@
 <main>
   <section class="hero">
     <div class="wrap">
-      <h1>Hardwood & Engineered Wood Flooring—      Floors As Individual As You Are!</h1>
+      <h1>Hardwood & Engineered Wood Flooring—Installation Tailored for You!</h1>
       <p>
         With 20+ years in the trade and roots in San Francisco, <strong>Dubon Crafts Inc.</strong>
         delivers exacting installation, custom staining &amp; sanding, and <strong>hand-scraped finishes</strong>
@@ -176,10 +182,10 @@
     <div class="wrap">
       <h2>Recent Work</h2>
       <div class="gallery">
-        <img src="images/project1.jpg" alt="Wide-plank engineered oak installation" />
-        <img src="{{/images/project2.jpg}}" alt="Hand-scraped oak with matte oil finish" />
-        <img src="{{/images/project3.jpg}}" alt="Dust-controlled sanding in progress" />
-        <img src="{{/images/project4.jpg}}" alt="Custom stain on solid white oak" />
+        <a href="images/project1.jpg" class="lb" aria-label="Open image"><img src="images/project1.jpg" alt="Wide-plank engineered oak installation" /></a>
+        <a href="images/project2.jpg" class="lb" aria-label="Open image"><img src="images/project2.jpg" alt="Hand-scraped oak with matte oil finish" /></a>
+        <a href="images/project3.jpg" class="lb" aria-label="Open image"><img src="images/project3.jpg" alt="Dust-controlled sanding in progress" /></a>
+        <a href="images/project4.jpg" class="lb" aria-label="Open image"><img src="images/project4.jpg" alt="Custom stain on solid white oak" /></a>
       </div>
       <p><small class="note"></small></p>
     </div>
@@ -240,6 +246,45 @@
   "priceRange": "$$",
   "sameAs": ["{{https://www.facebook.com/yourpage}}","{{https://www.instagram.com/yourpage}}"]
 }
+</script>
+
+<div class="lb-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" tabindex="-1">
+  <button class="lb-close" aria-label="Close preview">×</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script>
+  (function(){
+    const overlay = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const closeBtn = overlay.querySelector('.lb-close');
+
+    function openLightbox(src, alt){
+      img.src = src;
+      img.alt = alt || '';
+      overlay.classList.add('open');
+      overlay.focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      overlay.classList.remove('open');
+      img.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a.lb');
+      if(!a) return;
+      e.preventDefault();
+      const pic = a.getAttribute('href');
+      const alt = a.querySelector('img')?.getAttribute('alt') || '';
+      openLightbox(pic, alt);
+    });
+
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeLightbox(); });
+    closeBtn.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+  })();
 </script>
 
 </body>
