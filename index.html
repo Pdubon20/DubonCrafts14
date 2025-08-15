@@ -39,11 +39,14 @@
     .logo span{color:var(--brand)} 
     .tel{display:inline-flex;align-items:center;gap:.6rem;background:var(--brand);color:#fff;padding:.7rem 1.1rem;border-radius:.7rem;font-weight:700;font-family:var(--font-heading);letter-spacing:.4px;text-transform:uppercase;box-shadow:0 6px 16px rgba(13,58,109,.15)}  
     .tel:hover{background:var(--brand-dark);text-decoration:none}
-    .hero{position:relative;padding:56px 0 24px;background-image:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('images/hero.jpg');background-size:cover;background-position:center;color:#fff}
-    .hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(32px,5vw,52px);margin:0 0 12px;letter-spacing:.4px}  
-    .hero p{max-width:780px;color:rgba(255,255,255,.9);margin:0 0 18px;font-size:18px} 
+    .hero{position:relative;padding:56px 0 24px;background: linear-gradient(180deg, var(--brand) 0%, var(--brand) 55%, var(--brand-dark) 100%); background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 90%, white) 0%, var(--brand) 55%, color-mix(in srgb, var(--brand-dark) 85%, black) 100%);background-size:cover;background-position:center;color:#fff}
+    .hero .wrap{margin-top:-18px}
+    .hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(32px,5vw,52px);margin:0 0 18px;letter-spacing:.4px}  
+    .hero p{max-width:780px;color:rgba(255,255,255,.9);margin:0 0 30px;font-size:18px} 
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-    .badge{border:1px solid #e5e5e5;border-radius:999px;padding:6px 12px;font-size:14px;background:#fff;font-family:var(--font-body)} 
+    .badge{border:1px solid #e5e5e5;border-radius:999px;padding:6px 12px;font-size:14px;background:#fff;font-family:var(--font-body)}
+    .hero .badge{color:#000;font-family:var(--font-body);font-weight:800;letter-spacing:.2px;display:inline-flex;align-items:center;gap:8px;font-size:15px}
+    .hero .badge::before{content:"";display:inline-block;width:18px;height:18px;flex:0 0 18px;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='12' fill='%2300ff66'/><path d='M6 12.5l3.5 3.5L18 8.5' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");} 
     .grid{display:grid;gap:24px}
     @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)} .grid-2{grid-template-columns:repeat(2,1fr)}}
     section{padding:44px 0;border-top:1px solid #f2f2f2}
@@ -58,6 +61,8 @@
     .sticky-call{position:fixed;right:16px;bottom:16px;background:var(--brand);color:#fff;padding:1rem 1.2rem;border-radius:999px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;box-shadow:0 12px 28px rgba(13,58,109,.25)} 
     .sticky-call:hover{background:var(--brand-dark);text-decoration:none}
     .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    @media(min-width:700px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1000px){.gallery{grid-template-columns:repeat(4,1fr)}}
     .gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px;border:1px solid #eee}
     small.note{color:#6b6b6b}
     /* Brand mark (image) */
@@ -76,6 +81,12 @@
     .lb-overlay img{max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
     .lb-close{position:absolute;top:14px;right:16px;cursor:pointer;font-size:28px;color:#fff;line-height:1}
     .lb-overlay:focus{outline:2px solid #fff;outline-offset:4px}
+    /* Videos grid */
+    .video-grid{display:grid;gap:16px}
+    @media(min-width:700px){.video-grid{grid-template-columns:repeat(3,1fr)}}
+    .video-card{border:1px solid #eee;border-radius:14px;padding:12px;background:#fff}
+    .video-aspect{position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:10px}
+    .video-aspect video, .video-aspect iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
 </style>
 </head>
 <body>
@@ -182,12 +193,61 @@
     <div class="wrap">
       <h2>Recent Work</h2>
       <div class="gallery">
-        <a href="images/project1.jpg" class="lb" aria-label="Open image"><img src="images/project1.jpg" alt="Wide-plank engineered oak installation" /></a>
-        <a href="images/project2.jpg" class="lb" aria-label="Open image"><img src="images/project2.jpg" alt="Hand-scraped oak with matte oil finish" /></a>
-        <a href="images/project3.jpg" class="lb" aria-label="Open image"><img src="images/project3.jpg" alt="Dust-controlled sanding in progress" /></a>
-        <a href="images/project4.jpg" class="lb" aria-label="Open image"><img src="images/project4.jpg" alt="Custom stain on solid white oak" /></a>
+        <a href="images/project1.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project1.jpg" alt="Wide-plank engineered oak installation" /></a>
+        <a href="images/project2.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project2.jpg" alt="Hand-scraped oak with matte oil finish" /></a>
+        <a href="images/project3.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project3.jpg" alt="Dust-controlled sanding in progress" /></a>
+        <a href="images/project4.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project4.jpg" alt="Custom stain on solid white oak" /></a>
+        <a href="images/project5.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project5.jpg" alt="Project 5 placeholder" /></a>
+        <a href="images/project6.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project6.jpg" alt="Project 6 placeholder" /></a>
+        <a href="images/project7.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project7.jpg" alt="Project 7 placeholder" /></a>
+        <a href="images/project8.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project8.jpg" alt="Project 8 placeholder" /></a>
+        <a href="images/project9.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project9.jpg" alt="Project 9 placeholder" /></a>
+        <a href="images/project10.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project10.jpg" alt="Project 10 placeholder" /></a>
+        <a href="images/project11.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project11.jpg" alt="Project 11 placeholder" /></a>
+        <a href="images/project12.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project12.jpg" alt="Project 12 placeholder" /></a>
+        <a href="images/project13.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project13.jpg" alt="Project 13 placeholder" /></a>
+        <a href="images/project14.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project14.jpg" alt="Project 14 placeholder" /></a>
+        <a href="images/project15.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project15.jpg" alt="Project 15 placeholder" /></a>
+        <a href="images/project16.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project16.jpg" alt="Project 16 placeholder" /></a>
+        <a href="images/project17.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project17.jpg" alt="Project 17 placeholder" /></a>
+        <a href="images/project18.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project18.jpg" alt="Project 18 placeholder" /></a>
+        <a href="images/project19.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project19.jpg" alt="Project 19 placeholder" /></a>
+        <a href="images/project20.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project20.jpg" alt="Project 20 placeholder" /></a>
+        <a href="images/project21.jpg" class="lb" aria-label="Open image"><img loading="lazy" src="images/project21.jpg" alt="Project 21 placeholder" /></a>
       </div>
-      <p><small class="note"></small></p>
+      <p><small class="note">Click any image to open a full-size preview.</small></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Videos</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-aspect">
+            <video controls preload="none" poster="images/video1.jpg" aria-label="Installation — Herringbone layout">
+              <source src="videos/video1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <small class="note">Installation — Herringbone layout</small>
+        </div>
+        <div class="video-card">
+          <div class="video-aspect">
+            <video controls preload="none" poster="images/video2.jpg" aria-label="Sanding — Dust-controlled process">
+              <source src="videos/video2.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <small class="note">Sanding — Dust-controlled process</small>
+        </div>
+        <div class="video-card">
+          <div class="video-aspect">
+            <video controls preload="none" poster="images/video3.jpg" aria-label="Hand-scraped finish — Before & After">
+              <source src="videos/video3.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <small class="note">Hand-scraped finish — Before & After</small>
+        </div>
+      </div>
     </div>
   </section>
 
