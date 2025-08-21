@@ -82,6 +82,20 @@
     /* Stronger h3 styling for modern-vintage balance */
     h3{font-family:var(--font-heading);font-weight:700;letter-spacing:.2px;font-size:clamp(18px,2.2vw,22px)}
     /* Lightbox */
+    /* Lightbox navigation arrows */
+    .lb-prev,.lb-next{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:999px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
+      color:#fff; font-size:26px; line-height:1; cursor:pointer; user-select:none;
+      backdrop-filter: blur(2px);
+    }
+    .lb-prev{left:16px}
+    .lb-next{right:16px}
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.22)}
+    .lb-prev:focus-visible,.lb-next:focus-visible{outline:2px solid #fff; outline-offset:2px}
+    
     .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
     .lb-overlay.open{display:flex}
     .lb-overlay img{max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -95,7 +109,35 @@
 @supports not (aspect-ratio: 1){.video-aspect{padding-top:177.78%}}
     .video-aspect video, .video-aspect iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
 @media(min-width:1000px){.video-grid{grid-template-columns:repeat(4,1fr)}}
+
+    /* Center play button overlay for videos */
+    .video-aspect .vid-play{
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:76px; height:76px; border-radius:999px;
+      background:rgba(0,0,0,.6); border:2px solid rgba(255,255,255,.85);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none;
+      transition:transform .15s ease, background .15s ease, opacity .15s ease;
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+    .video-aspect .vid-play svg{width:28px;height:28px;fill:#fff; margin-left:2px}
+    .video-aspect .vid-play:hover{background:rgba(0,0,0,.7); transform:translate(-50%,-50%) scale(1.06)}
+    .video-aspect .vid-play:focus-visible{outline:3px solid #fff; outline-offset:3px}
+    .video-aspect.playing .vid-play{display:none}
+    @media(min-width:1000px){
+      .video-aspect .vid-play{width:86px; height:86px}
+      .video-aspect .vid-play svg{width:32px;height:32px}
+    }
 </style>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H05J5GJ8TT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-H05J5GJ8TT');
+  </script>
 </head>
 <body>
 
@@ -148,23 +190,23 @@
         </div>
         <div class="card">
           <h3>Staining &amp; Sanding</h3>
-          <p><strong>Dust‑controlled, color‑true, durable.</strong></p>
+          <p><strong>Dust-controlled, color-true, durable.</strong></p>
           <ul class="list">
             <li>HEPA dust capture sanding</li>
             <li>Custom color matching to samples</li>
-            <li>Water‑ or oil‑based systems (matte → gloss)</li>
-            <li>Low‑odor &amp; VOC‑free options</li>
-            <li>Protective multi‑coat finish</li>
+            <li>Water- or oil-based systems (matte → gloss)</li>
+            <li>Low-odor &amp; VOC-free options</li>
+            <li>Protective multi-coat finish</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Hand‑Scraped Finish</h3>
-          <p><strong>Authentic, time‑worn character—by hand.</strong></p>
+          <h3>Hand-Scraped Finish</h3>
+          <p><strong>Authentic, time-worn character—by hand.</strong></p>
           <ul class="list">
             <li>Subtle undulation with eased edges</li>
-            <li>Hand‑tooled texture that hides wear</li>
+            <li>Hand-tooled texture that hides wear</li>
             <li>Pairs well with white oak, red oak, and hickory</li>
-            <li>Optional wire‑brush or bevel accents</li>
+            <li>Optional wire-brush or bevel accents</li>
             <li>Sealed in your choice of sheen</li>
           </ul>
         </div>
@@ -326,7 +368,9 @@
 
 <div class="lb-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" tabindex="-1">
   <button class="lb-close" aria-label="Close preview">×</button>
+  <button class="lb-prev" aria-label="Previous image" title="Previous">‹</button>
   <img id="lightbox-img" alt="">
+  <button class="lb-next" aria-label="Next image" title="Next">›</button>
 </div>
 
 <script>
@@ -334,10 +378,37 @@
     const overlay = document.getElementById('lightbox');
     const img = document.getElementById('lightbox-img');
     const closeBtn = overlay.querySelector('.lb-close');
+    const prevBtn = overlay.querySelector('.lb-prev');
+    const nextBtn = overlay.querySelector('.lb-next');
+    const links = Array.from(document.querySelectorAll('a.lb'));
+    let currentIndex = -1;
 
-    function openLightbox(src, alt){
-      img.src = src;
-      img.alt = alt || '';
+    function show(index){
+      if(!links.length) return;
+      if(index < 0) index = links.length - 1;
+      if(index >= links.length) index = 0;
+      currentIndex = index;
+      const a = links[currentIndex];
+      const pic = a.getAttribute('href');
+      const alt = a.querySelector('img')?.getAttribute('alt') || '';
+      img.src = pic;
+      img.alt = alt;
+      // Preload next image for snappier nav
+      const preload = new Image();
+      preload.src = links[(currentIndex + 1) % links.length].getAttribute('href');
+      // Analytics: track image view
+      if (window.gtag) {
+        gtag('event', 'view_image', {
+          image_src: pic,
+          image_alt: alt,
+          index: currentIndex + 1,
+          gallery_size: links.length
+        });
+      }
+    }
+
+    function openLightbox(index){
+      show(index);
       overlay.classList.add('open');
       overlay.focus();
       document.body.style.overflow = 'hidden';
@@ -346,23 +417,111 @@
       overlay.classList.remove('open');
       img.src = '';
       document.body.style.overflow = '';
+      currentIndex = -1;
     }
+    function next(){ show(currentIndex + 1); }
+    function prev(){ show(currentIndex - 1); }
 
+    // Open from gallery click
     document.addEventListener('click', function(e){
       const a = e.target.closest('a.lb');
       if(!a) return;
       e.preventDefault();
-      const pic = a.getAttribute('href');
-      const alt = a.querySelector('img')?.getAttribute('alt') || '';
-      openLightbox(pic, alt);
+      const idx = links.indexOf(a);
+      openLightbox(idx);
     });
 
+    // Button handlers
+    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); prev(); });
+
+    // Overlay close on backdrop click
     overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeLightbox(); });
     closeBtn.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e)=>{
+      if(!overlay.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      else if(e.key === 'ArrowRight') next();
+      else if(e.key === 'ArrowLeft') prev();
+    });
   })();
 </script>
 
+<script>
+  // Central play button overlay + GA4 video & call tracking
+  (function(){
+    const cards = document.querySelectorAll('.video-aspect');
+    cards.forEach((card, idx)=>{
+      const v = card.querySelector('video');
+      if(!v) return;
+
+      // Build central play button
+      const btn = document.createElement('button');
+      btn.className = 'vid-play';
+      btn.setAttribute('aria-label','Play video');
+      btn.innerHTML = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 14v20l18-10-18-10z"/></svg>';
+      card.appendChild(btn);
+
+      // Title for analytics
+      const title = v.getAttribute('aria-label') || v.getAttribute('title') || ('Video ' + (idx+1));
+
+      // State for analytics
+      let started = false;
+      const marks = {25:false, 50:false, 75:false};
+      const pct = ()=> v.duration ? (v.currentTime / v.duration) * 100 : 0;
+      const common = ()=> ({
+        video_title: title,
+        video_index: idx + 1,
+        video_duration: Math.round(v.duration || 0),
+        current_time: Math.round(v.currentTime || 0),
+        percent_played: Math.round(pct())
+      });
+      const track = (name, extra)=>{ if(window.gtag) gtag('event', name, Object.assign({}, common(), extra||{})); };
+
+      const update = ()=>{
+        if(v.paused){ card.classList.remove('playing'); btn.style.display = 'flex'; }
+        else { card.classList.add('playing'); btn.style.display = 'none'; }
+      };
+
+      btn.addEventListener('click', (e)=>{ e.stopPropagation(); if(v.paused) v.play(); else v.pause(); });
+
+      v.addEventListener('play', ()=>{
+        if(!started && v.currentTime < 0.5){ track('video_start'); started = true; }
+        else { track('video_play'); }
+        update();
+      });
+      v.addEventListener('pause', ()=>{ if(!v.ended) track('video_pause'); update(); });
+      v.addEventListener('ended', ()=>{ track('video_complete', {percent_played:100}); marks[25]=marks[50]=marks[75]=true; started=false; update(); });
+      v.addEventListener('timeupdate', ()=>{
+        const p = pct();
+        if(!marks[25] && p>=25){ marks[25]=true; track('video_progress', {milestone:25}); }
+        if(!marks[50] && p>=50){ marks[50]=true; track('video_progress', {milestone:50}); }
+        if(!marks[75] && p>=75){ marks[75]=true; track('video_progress', {milestone:75}); }
+      });
+
+      update();
+    });
+
+    // Click-to-call tracking (mark as conversion in GA4 UI if desired)
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        const pos = a.classList.contains('sticky-call') ? 'sticky' :
+                    (a.closest('header') ? 'header' :
+                    (a.closest('.cta') ? 'cta' :
+                    (a.closest('footer') ? 'footer' : 'body')));
+        if(window.gtag){
+          gtag('event','generate_lead',{
+            lead_type:'phone',
+            position: pos,
+            link_text: (a.textContent || '').trim(),
+            link_href: a.getAttribute('href')
+          });
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
-
