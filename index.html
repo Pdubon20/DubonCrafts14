@@ -5,14 +5,14 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-H05J5GJ8TT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
 
     gtag('config', 'G-H05J5GJ8TT');
   </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dubon Crafts Inc. | Hardwood & Laminate Flooring</title>
+  <title>Dubon Crafts Inc. | Hardwood & Engineered Wood Flooring</title>
   <!-- Vintage/Refined font pairing -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -137,15 +137,33 @@
       .video-aspect .vid-play{width:86px; height:86px}
       .video-aspect .vid-play svg{width:32px;height:32px}
     }
-</style></head>
+
+    /* Subtle Appear Animation */
+    [data-reveal]{
+      opacity:0;
+      transform:translateY(26px) scale(.985);
+      filter:blur(.8px);
+      transition: opacity 1.35s cubic-bezier(.22,1,.36,1), transform 1.35s cubic-bezier(.22,1,.36,1), filter 1.35s cubic-bezier(.22,1,.36,1);
+      transition-delay:var(--reveal-delay,0s);
+      will-change:opacity,transform;
+    }
+    [data-reveal].reveal-in{opacity:1;transform:none;filter:none}
+    [data-reveal="fade"]{transform:none}
+    [data-reveal="zoom-in"]{transform:scale(.985)}
+    [data-reveal=\"slide-up\"]{transform:translateY(30px)}
+    [data-reveal="slide-right"]{transform:translateX(-16px)}
+    @media (prefers-reduced-motion: reduce){
+      [data-reveal]{opacity:1;transform:none;filter:none;transition:none}
+    }
+  </style></head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <div class="logo" style="font-weight: 1000;"> <img class="mark-img" src="images/logo.png" alt="Dubon Crafts emblem" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="logo" data-reveal="fade" style="font-weight: 1000;"> <img class="mark-img" src="images/logo.png" alt="Dubon Crafts emblem" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
       <div class="logo-ph" aria-hidden="true" style="display:none">Logo</div> <span style="text-transform:uppercase; font-weight:1000;"><span style="color:var(--ink); font-weight:1000;">DUBON</span><span style="color:var(--brand); font-weight:1000;">CRAFTS</span> <span style="color:var(--ink); font-weight:1000;">INC.</span></span>
     </div>
-    <a class="tel" href="tel:+19252435600">
+    <a class="tel" data-reveal="slide-up" href="tel:+19252435600">
       <svg class="phone-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5c0 8 8 16 16 16l3-3-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5-3 3z"/></svg>
       Call (925) 243-5600
     </a>
@@ -155,19 +173,19 @@
 <main>
   <section class="hero">
     <div class="wrap">
-      <h1>Hardwood & Laminated Flooring — Floors As Individual As You Are!</h1>
-      <p>
+      <h1>Hardwood & Engineered Wood Flooring—Floors As Individual As You Are!</h1>
+      <p data-reveal="slide-up">
         With 20+ years in the trade and roots in San Francisco, <strong>Dubon Crafts Inc.</strong>
         delivers exacting installation, custom staining &amp; sanding, and <strong>hand-scraped finishes</strong>
         that impart an <em>antique-style cachet</em>—subtle texture that ages gracefully and hides wear.
         Now serving homeowners and light-commercial clients across Michigan.
       </p>
       <div class="badges">
-        <span class="badge">NWFA Member</span>
-        <span class="badge">State-Licensed Contractor</span>
-        <span class="badge">Low-Odor Finishes</span>
-        <span class="badge">Clean Job Sites &amp; Written Estimates</span>
-      <span class="badge">VOC-Free</span>
+        <span class="badge" data-reveal="slide-up">NWFA Member</span>
+        <span class="badge" data-reveal="slide-up">State-Licensed Contractor</span>
+        <span class="badge" data-reveal="slide-up">Low-Odor Finishes</span>
+        <span class="badge" data-reveal="slide-up">Clean Job Sites &amp; Written Estimates</span>
+      <span class="badge" data-reveal="slide-up">VOC-Free</span>
         </div>
     </div>
   </section>
@@ -272,7 +290,7 @@
     <div class="wrap">
       <h2>Videos</h2>
       <div class="video-grid">
-        <div class="video-card">
+        <div class="video-card" data-reveal="slide-up">
           <div class="video-aspect">
             <video controls preload="none" poster="images/video1.jpg" width="720" height="1280" aria-label="Installation — Herringbone layout">
               <source src="videos/video1.mp4" type="video/mp4" />
@@ -280,7 +298,7 @@
           </div>
           <small class="note">Before</small>
         </div>
-        <div class="video-card">
+        <div class="video-card" data-reveal="slide-up">
           <div class="video-aspect">
             <video controls preload="none" poster="images/video2.jpg" width="720" height="1280" aria-label="Sanding — Dust-controlled process">
               <source src="videos/video2.mp4" type="video/mp4" />
@@ -288,7 +306,7 @@
           </div>
           <small class="note">After</small>
         </div>
-        <div class="video-card">
+        <div class="video-card" data-reveal="slide-up">
           <div class="video-aspect">
             <video controls preload="none" poster="images/video3.jpg" width="720" height="1280" aria-label="Hand-scraped finish — Before & After">
               <source src="videos/video3.mp4" type="video/mp4" />
@@ -296,7 +314,7 @@
           </div>
           <small class="note">Before</small>
         </div>
-        <div class="video-card">
+        <div class="video-card" data-reveal="slide-up">
           <div class="video-aspect">
             <video controls preload="none" poster="images/video4.jpg" width="720" height="1280" aria-label="Recoating — Satin vs. Matte">
               <source src="videos/video4.mp4" type="video/mp4" />
@@ -314,8 +332,8 @@
       <p>We are a <strong>service-area contractor</strong>. Typical cities: {{Bloomfield Hills, Birmingham, Troy, Royal Oak, Rochester, West Bloomfield, Farmington Hills, Novi, Madison Heights}}. If you’re nearby, call to confirm scheduling.</p>
       <div class="cta">
         <strong>Ready for a clean, durable floor?</strong><br />
-        Call <a href="tel:+19252435600">(925) 243-5600</a> for a free, no-pressure in-home estimate. Prefer email?
-        <a href="mailto:{{estimates@duboncrafts.com}}">Duboncraftsinc@yahoo.com</a>.
+        Call <a data-reveal="slide-up" href="tel:+19252435600">(925) 243-5600</a> for a free, no-pressure in-home estimate. Prefer email?
+        <a data-reveal="slide-up" href="mailto:{{estimates@duboncrafts.com}}">Duboncraftsinc@yahoo.com</a>.
       </div>
     </div>
   </section>
@@ -339,7 +357,7 @@
   </div>
 </footer>
 
-<a class="sticky-call" href="tel:+19252435600" aria-label="Call Dubon Crafts Inc.">Call (925) 243-5600</a>
+<a class="sticky-call" data-reveal="slide-up" href="tel:+19252435600" aria-label="Call Dubon Crafts Inc.">Call (925) 243-5600</a>
 
 <script>
   // Update year in footer
@@ -522,6 +540,55 @@
     });
   })();
 </script>
+
+
+<!-- Appear effect script (verbatim) -->
+<script>
+(function(){
+  "use strict";
+  // Configuration
+  const REVEAL_ONCE = true;             // reveal only the first time in view
+  const ROOT_MARGIN = "0px 0px -8% 0px";// trigger slightly before bottom
+  const THRESHOLD = 0.2;                 // amount of element visible to trigger
+  const STAGGER_MS = 140;                 // per-item delay within a group
+
+  // Collect targets: anything with data-reveal, plus common elements if you want auto-mode
+  const targets = Array.from(document.querySelectorAll('[data-reveal]'));
+
+  // Optional: auto-apply to common elements when no attribute is set
+  const auto = document.querySelectorAll('h2, .card, .gallery img, .cta');
+  auto.forEach(el=>{ if(!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal','slide-up'); targets.push(el); });
+
+  // Group siblings for stagger by parent container
+  const groups = new Map();
+  targets.forEach(el=>{
+    const key = el.parentElement;
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(el);
+  });
+  groups.forEach(list=>{
+    list.forEach((el,i)=> el.style.setProperty('--reveal-delay', (i*STAGGER_MS)+'ms'));
+  });
+
+  // IntersectionObserver
+  const io = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('reveal-in');
+        if(REVEAL_ONCE) io.unobserve(entry.target);
+      } else if(!REVEAL_ONCE){
+        entry.target.classList.remove('reveal-in');
+      }
+    });
+  }, {root:null, rootMargin:ROOT_MARGIN, threshold:THRESHOLD}) : null;
+
+  // Observe or fallback
+  targets.forEach(el=>{
+    if(io) io.observe(el); else el.classList.add('reveal-in');
+  });
+})();
+</script>
 </body>
 </html>
+
 
